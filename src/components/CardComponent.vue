@@ -1,22 +1,29 @@
 <template>
-  <article>
-    <header>
-      {{cardData.header}}, {{cardData.age}}+
-    </header>
-    <div class="info">
-      <div class="type">{{cardData.type}}</div>
-      <div class="playerCount">для {{cardData.playerCount}} человек</div>
-      <div class="location">{{cardData.location}}</div>
-      <div class="difficulty">сложность {{cardData.difficulty}}/10</div>
+  <div class="">
+    <article>
+      <header>
+        {{cardData.header}}, {{cardData.age}}+
+      </header>
+      <div class="info">
+        <div class="type">{{cardData.type}}</div>
+        <div class="playerCount">для {{cardData.playerCount}} человек</div>
+        <div class="location">{{cardData.location}}</div>
+        <div class="difficulty">сложность {{cardData.difficulty}}/10</div>
+      </div>
+      <div class="description">
+        {{cardData.description}}
+      </div>
+    </article>
+    <div class="bg-custom-cont">
+      <div class="bg-custom">
+        <div class="white"></div>
+        <div class="gradient"></div>
+        <img src="@/assets/CardComponent/image.svg">
+        <div class="mostPopular">самый популярный</div>
+      </div>
     </div>
-    <div class="description">
-      {{cardData.description}}
-    </div>
-  </article>
-  <div class="gradient"></div>
-  <img src="@/assets/CardComponent/image.svg">
-  <div class="white"></div>
-  <div class="mostPopular">самый популярный</div>
+
+  </div>
 </template>
 
 <script>
@@ -126,5 +133,9 @@ export default {
     top: 160px;
     left: 503px;
 
+  }
+
+  .bg-custom-cont{
+    border: red 1px solid
   }
 </style>

@@ -1,22 +1,24 @@
 <template>
   <div class="app">
     <NavBar/>
+    <BreadcrumbComponent/>
     <main>
-      <ContentComponent/>
-      <PaymentComponent/>
+      <CardComponent/>
+      <PaymentComponent v-if="false"/>
     </main>
   </div>
 </template>
 
 <script>
 import NavBar from "@/components/NavBar";
-import ContentComponent from "@/components/ContentComponent";
+import BreadcrumbComponent from "@/components/BreadcrumbComponent";
+import CardComponent from "@/components/CardComponent";
 import PaymentComponent from "@/components/PaymentComponent";
 
 export default {
   name: 'App',
   components: {
-    NavBar, ContentComponent, PaymentComponent
+    NavBar, BreadcrumbComponent, CardComponent, PaymentComponent
   }
 }
 </script>
@@ -34,7 +36,7 @@ main {
   padding: 0 162px;
   width: 100%;
   padding-top: 24px !important;
-
+  display: flex;
 
 }
 </style>

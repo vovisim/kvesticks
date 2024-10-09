@@ -1,6 +1,5 @@
 <template>
-  <BreadcrumbComponent/>
-  <CardComponent/>
+
 </template>
 
 <script>

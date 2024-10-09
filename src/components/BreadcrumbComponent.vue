@@ -15,6 +15,9 @@ export default {
 
 <style scoped>
   nav{
-    padding-bottom: 32px;
+    height: max-content;
+  }
+  ol{
+    margin: 0;
   }
 </style>
