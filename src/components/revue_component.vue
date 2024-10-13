@@ -39,6 +39,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
+
   section{
     background: #fff;
     padding: 30px 24px;

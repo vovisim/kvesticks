@@ -8,7 +8,12 @@
         <PaymentComponent />
       </div>
       <RevueComponent/>
-
+      <div class="buyKvest mobile">
+        <button class="buyKvestItem">
+          <span class="">Купить квест</span>
+          <span class="">{{price}}₽</span>
+        </button>
+      </div>
     </main>
   </div>
 </template>
@@ -24,6 +29,11 @@ export default {
   name: 'App',
   components: {
     NavBar, BreadcrumbComponent, CardComponent, PaymentComponent, RevueComponent
+  },
+  data(){
+    return{
+      price: 500
+    }
   }
 }
 </script>
@@ -53,12 +63,11 @@ main {
   justify-content: space-between;
   display: flex;
   margin-bottom: 48px;
+
 }
 
 @media (max-width: 627px) {
-  /*.app{*/
-  /*  overflow-x: hidden;*/
-  /*}*/
+
   * {
     margin: 0;
     padding: 0;
@@ -72,5 +81,44 @@ main {
   }
 
 
+
 }
+</style>
+
+<style scoped>
+  @media (min-width: 627px) {
+    .mobile {
+      display: none !important;
+    }
+  }
+
+
+  .buyKvest {
+    width: 100%;
+    height: 72px;
+    display: flex;
+    justify-content: center;
+    padding: 10px 12px;
+    background: #FFFFFF;
+    border-radius: 7px 7px 0 0;
+    box-shadow: 0 -2px 3px 0 rgba(0, 0, 0, 0.15);
+    position: fixed;
+    bottom: 0;
+  }
+  .buyKvestItem{
+    display: flex;
+    justify-content: space-between;
+    background: #F77833;
+    color: #FFFFFF;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 20px;
+    border: 0px transparent;
+    letter-spacing: -1%;
+    padding: 7px 23px;
+    height: 52px;
+    align-items: center;
+    border-radius: 7px;
+    width: 100%;
+  }
 </style>

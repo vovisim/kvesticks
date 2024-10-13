@@ -63,6 +63,7 @@ export default {
       width: 100%;
       display: flex;
       flex-direction: column;
+
     }
 
     .bg-custom-cont{
@@ -96,7 +97,8 @@ export default {
         height: 288px;
         background: #fff;
         border: transparent 0;
-        border-radius: 6px 0 0 6px;
+        border-radius: 0 0 6px 6px;
+        box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.08);
 
       }
 

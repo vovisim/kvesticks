@@ -1,27 +1,27 @@
 <template>
   <div class="RevueComponent">
-    <header>
+    <header class="desctop">
       <div class="head">Отзывы клиентов</div>
       <div class="count">{{count}}</div>
     </header>
+    <header class="mobile">
+      <div class="head">Отзывы клиентов</div>
+      <div class="count">{{elem}}/{{count}}</div>
+    </header>
+
     <ul class="desctop">
       <li v-for="index in revuesData" :key="index">
         <revue_component :revueData="index"/>
       </li>
     </ul>
-    <div class="slider-container mobile">
-      <div class="borderBox">
-        <div class="item" v-for="index in revuesData" :key="index">
-          <revue_component :revueData="index"/>
-        </div>
-      </div>
+
+    <div class="mobile">
+      <mobileCorusel :revues-data="revuesData"/>
     </div>
 
     <div class="buton">
       <button>Смотреть все отзывы</button>
     </div>
-
-
 
   </div>
 </template>
@@ -29,14 +29,22 @@
 <script>
 
 import revue_component from "@/components/revue_component";
+import mobileCorusel from "@/components/mobileCorusel";
+
+
+
+
+
 export default {
   name: "RevueComponent",
   components: {
-    revue_component
+    revue_component,
+    mobileCorusel
   },
   data(){
     return{
       count: 182,
+      elem: 1,
       revuesData: {
         0: {
           date: "14 февраля 2024",
@@ -118,33 +126,11 @@ export default {
 </script>
 
 <style scoped lang="scss">
-
-
-  //@media(min-width: 1200px){
-  //  .slide {
-  //    padding: 3rem;
-  //  }
-  //}
-  //
-  //.slide img{
-  //  max-width: 100%;
-  //  max-height: 100%;
-  //  transition: transform 0.3s ease-in-out;
-  //  box-shadow: 5px 5px 50px -1px var(--shadow);
-  //  border-radius: 4px;
-  //  user-select: none;
-  //}
-  //
-  //.grabbing {
-  //  cursor: grabbing;
-  //}
-  //
-  //.grabbing .slide img{
-  //  transform: scale(0.9);
-  //  box-shadow: 5px 5px 40px -1px var(--shadow);
-  //}
-
+  header{
+    color: #424242;
+  }
   @media (max-width: 627px) {
+
     * {
       box-sizing: border-box;
       padding: 0;
@@ -189,7 +175,7 @@ export default {
       letter-spacing: -1%;
       border: transparent 0 solid;
       border-radius: 8px;
-      margin: 0 13px;
+
     }
 
 
@@ -198,6 +184,11 @@ export default {
     }
     .mobile{
       display: block;
+
+      > .count {
+        margin-top: 10px;
+        font-size: 13px;
+      }
     }
     .head{
       font-size: 24px;
@@ -216,7 +207,13 @@ export default {
         width: max-content;
       }
     }
-
+    .buton{
+      display: flex !important;
+      justify-content: center;
+      width: 100%;
+      margin-bottom: 96px;
+      margin-top: 10px;
+    }
   }
   @media (min-width: 627px) {
     .desctop{
@@ -230,7 +227,6 @@ export default {
       width: 831px;
       display: flex;
       flex-direction: column;
-
     }
 
     ul {
@@ -289,8 +285,10 @@ export default {
     }
 
     .buton{
-      display: flex;
+      display: flex !important;
       justify-content: center;
+      width: 100%;
+
     }
 
   }
