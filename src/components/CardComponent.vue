@@ -69,6 +69,7 @@ export default {
       position: absolute;
       top: 0;
       z-index: -1;
+      width: 100%;
     }
     .mostPopular{
       color: #383838;
@@ -118,6 +119,7 @@ export default {
         top: 0;
         border-radius: 0;
         border: transparent 0;
+        overflow-x: hidden;
       }
 
 

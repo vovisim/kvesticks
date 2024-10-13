@@ -9,19 +9,19 @@
         <revue_component :revueData="index"/>
       </li>
     </ul>
-    <div class="slider-container-out mobile">
-      <div class="slider-container" ref="slider">
-        <div class="slide" v-for="index in revuesData" :key="index">
+    <div class="slider-container mobile">
+      <div class="borderBox">
+        <div class="item" v-for="index in revuesData" :key="index">
           <revue_component :revueData="index"/>
         </div>
       </div>
     </div>
 
-
-
     <div class="buton">
       <button>Смотреть все отзывы</button>
     </div>
+
+
 
   </div>
 </template>
@@ -34,73 +34,9 @@ export default {
   components: {
     revue_component
   },
-  mounted() {
-    window.addEventListener('resize', this.setPositionByIndex);
-    window.oncontextmenu = (event) => {
-      event.preventDefault();
-      event.stopPropagation();
-      return false;
-    };
-  },
-  beforeUnmount() {
-    window.removeEventListener('resize', this.setPositionByIndex);
-  },
-  methods: {
-    pointerDown(index) {
-      return (event) => {
-        this.currentIndex = index;
-        this.startPos = event.clientX;
-        this.isDragging = true;
-        this.animationID = requestAnimationFrame(this.animation);
-        this.$refs.slider.classList.add('grabbing');
-      };
-    },
-    pointerMove(event) {
-      if (this.isDragging) {
-        const currentPosition = event.clientX;
-        this.currentTranslate = this.prevTranslate + currentPosition - this.startPos;
-      }
-    },
-    pointerUp() {
-      cancelAnimationFrame(this.animationID);
-      this.isDragging = false;
-      const movedBy = this.currentTranslate - this.prevTranslate;
-
-      // Snap to the next or previous slide
-      if (movedBy < -100 && this.currentIndex < this.slides.length - 1) {
-        this.currentIndex += 1;
-      }
-      if (movedBy > 100 && this.currentIndex > 0) {
-        this.currentIndex -= 1;
-      }
-
-      this.setPositionByIndex();
-      this.$refs.slider.classList.remove('grabbing');
-    },
-    animation() {
-      this.setSliderPosition();
-      if (this.isDragging) {
-        this.animationID = requestAnimationFrame(this.animation);
-      }
-    },
-    setPositionByIndex() {
-      this.currentTranslate = this.currentIndex * -window.innerWidth;
-      this.prevTranslate = this.currentTranslate;
-      this.setSliderPosition();
-    },
-    setSliderPosition() {
-      this.$refs.slider.style.transform = `translateX(${this.currentTranslate}px)`;
-    }
-  },
   data(){
     return{
       count: 182,
-      isDragging: false,
-      startPos: 0,
-      currentTranslate: 0,
-      prevTranslate: 0,
-      currentIndex: 0,
-      animationID: null,
       revuesData: {
         0: {
           date: "14 февраля 2024",
@@ -214,29 +150,49 @@ export default {
       padding: 0;
       margin: 0;
     }
-
     .slider-container {
-      height: max-content;
-      width: 100%;
-      display: inline-flex;
-      overflow: hidden;
-      scrollbar-width: none;
-      transform: translateX(0);
-      will-change: transform;
-      transition: transform 0.3s ease-out;
-      cursor: grab;
+      padding: 0 12px;
+    }
+    .borderBox {
+      display: flex !important;
+      flex-direction: row !important;
+      flex-wrap: nowrap;
+      overflow-x: auto;
+      width: 350px;
+      box-sizing: border-box;
       gap: 10px;
     }
-    .slider-container-out{
-      padding: 12px;
+
+    .borderBox::-webkit-scrollbar {
+      width: 10px;
+      height: 10px;
     }
-    .slide{
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      width: 261px;
-      height: 432px;
+
+    .borderBox::-webkit-scrollbar-thumb {
+      background-color: #d32121;
+      border-radius: 10px;
     }
+
+    .borderBox::-webkit-scrollbar{
+      background-color: #0a0a73;
+      border-radius: 10px;
+    }
+
+    button{
+      width: 334px;
+      height: 52px;
+      background: #F77833;
+      color: #FFFFFF;
+      font-size: 16px;
+      font-weight: 700;
+      line-height: 20px;
+      letter-spacing: -1%;
+      border: transparent 0 solid;
+      border-radius: 8px;
+      margin: 0 13px;
+    }
+
+
     .desctop{
       display: none !important;
     }

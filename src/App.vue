@@ -31,6 +31,7 @@ export default {
 <style>
 .app{
   width: 100%;
+
 }
 * {
   margin: 0;
@@ -55,6 +56,9 @@ main {
 }
 
 @media (max-width: 627px) {
+  /*.app{*/
+  /*  overflow-x: hidden;*/
+  /*}*/
   * {
     margin: 0;
     padding: 0;
